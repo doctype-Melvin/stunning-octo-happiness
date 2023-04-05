@@ -1,12 +1,25 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 
 export default function Form() {
   const [entryObject, setEntryObject] = useState({
     motto: "",
     notes: "",
+    id: nanoid(),
   });
 
-  const handleChange = (event) => console.log(event.target.value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setEntryObject((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
+  // Submit this to local storage
+  const handleCreateClick = () => console.log(entryObject);
 
   return (
     <>
@@ -21,7 +34,9 @@ export default function Form() {
         rows="3"
         onChange={handleChange}
       ></textarea>
-      <button type="button">Create</button>
+      <button type="button" onClick={handleCreateClick}>
+        Create
+      </button>
     </>
   );
 }
