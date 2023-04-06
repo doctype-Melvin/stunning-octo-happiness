@@ -1,4 +1,5 @@
 export default function Entries({ children, total, favorites }) {
+  console.log(total);
   return (
     <>
       <div className="entries-info-box">
