@@ -9,10 +9,7 @@ export default function App() {
   return (
     <div className="App">
       <Header />
-      <Main>
-        <Form />
-        <Entries />
-      </Main>
+      <Main />
       {/* <Footer /> */}
     </div>
   );

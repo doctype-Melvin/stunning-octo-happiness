@@ -1,11 +1,11 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
-export default function Form() {
+export default function Form(props) {
+  const { newEntry, setNewEntry } = props;
   const [entryObject, setEntryObject] = useState({
     motto: "",
     notes: "",
-    id: nanoid(),
   });
 
   const handleChange = (event) => {
@@ -14,12 +14,18 @@ export default function Form() {
       return {
         ...prevState,
         [name]: value,
+        id: nanoid(),
       };
     });
   };
 
   // Submit this to local storage
-  const handleCreateClick = () => console.log(entryObject);
+  const handleCreateClick = () => {
+    setNewEntry((prevState) => {
+      return [...prevState, entryObject];
+    });
+    console.log(entryObject);
+  };
 
   return (
     <>
