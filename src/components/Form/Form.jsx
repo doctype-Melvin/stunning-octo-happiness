@@ -1,42 +1,45 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
-export default function Form() {
-  const [entryObject, setEntryObject] = useState({
-    motto: "",
-    notes: "",
-    id: nanoid(),
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setEntryObject((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
+export default function Form(props) {
+  const { setNewEntry } = props;
+  const [motto, setMotto] = useState("");
+  const [notes, setNotes] = useState("");
 
   // Submit this to local storage
-  const handleCreateClick = () => console.log(entryObject);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setNewEntry({
+      motto,
+      notes,
+      id: nanoid(),
+      favorite: false,
+    });
+    setMotto("");
+    setNotes("");
+  };
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <h2>NEW ENTRY</h2>
       <label htmlFor="motto">MOTTO</label>
-      <input type="text" name="motto" id="motto" onChange={handleChange} />
+      <input
+        type="text"
+        name="motto"
+        id="motto"
+        onChange={(event) => setMotto(event.target.value)}
+        value={motto}
+      />
       <label htmlFor="notes">NOTES</label>
       <textarea
         name="notes"
         id="notes"
         cols="30"
         rows="3"
-        onChange={handleChange}
+        onChange={(event) => setNotes(event.target.value)}
+        value={notes}
       ></textarea>
-      <button type="button" onClick={handleCreateClick}>
-        Create
-      </button>
-    </>
+      <button type="submit">Create</button>
+    </form>
   );
 }
