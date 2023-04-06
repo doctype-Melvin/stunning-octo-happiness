@@ -20,6 +20,17 @@ export default function Main() {
     }
   }, [newEntry]);
 
+  // Filter and render favorites
+  useEffect(() => {
+    let currentData = JSON.parse(localStorage.getItem("journal"));
+    /*
+    filter the local storage array by favorite properties
+    set the favorites state
+    pass the length to Entries component
+    */
+    console.log(currentData);
+  });
+
   return (
     <div>
       <Form newEntry={newEntry} setNewEntry={setNewEntry} />
