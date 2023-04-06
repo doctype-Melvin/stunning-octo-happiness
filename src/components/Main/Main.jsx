@@ -8,7 +8,7 @@ export default function Main() {
   const [newEntry, setNewEntry] = useState("");
   const [allEntries, setAllEntries] = useState(0);
   const [favorites, setFavorites] = useState(0);
-  const [entriesArray, setEntriesArray] = useState("");
+  const [entriesArray, setEntriesArray] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("journal")) {
