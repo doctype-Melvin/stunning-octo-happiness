@@ -28,11 +28,11 @@ export default function Main() {
       let currentData = JSON.parse(localStorage.getItem("journal"));
       let updatedData = [...currentData, newEntry];
       localStorage.setItem("journal", JSON.stringify(updatedData));
-      setAllEntries(JSON.parse(localStorage.getItem("journal")).length);
+      setAllEntries(updatedData.length);
+      setEntriesArray(updatedData);
       setFavorites(
         updatedData.filter((entry) => entry.favorite === true).length
       );
-      setEntriesArray(updatedData);
     }
   }, [newEntry]);
 

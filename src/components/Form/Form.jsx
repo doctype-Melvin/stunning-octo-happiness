@@ -9,12 +9,14 @@ export default function Form(props) {
   // Submit this to local storage
   const handleSubmit = (event) => {
     event.preventDefault();
-    setNewEntry({
-      motto,
-      notes,
-      id: nanoid(),
-      favorite: false,
-    });
+    if (motto && notes) {
+      setNewEntry({
+        motto,
+        notes,
+        id: nanoid(),
+        favorite: false,
+      });
+    }
     setMotto("");
     setNotes("");
   };
