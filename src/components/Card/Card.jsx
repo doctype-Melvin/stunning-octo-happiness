@@ -2,7 +2,14 @@
 import { useState } from "react";
 import Form from "../Form/Form";
 
-export default function Card({ motto, notes, id, entries, setEntries }) {
+export default function Card({
+  motto,
+  notes,
+  id,
+  entries,
+  setEntries,
+  setNewEntry,
+}) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [editEntry, setEditEntry] = useState("");
@@ -61,6 +68,8 @@ export default function Card({ motto, notes, id, entries, setEntries }) {
           editEntry={editEntry}
           setEditEntry={setEditEntry}
           isEdit={isEdit}
+          setIsEdit={setIsEdit}
+          setNewEntry={setNewEntry}
         />
       )}
     </section>

@@ -1,6 +1,6 @@
 // Component renders number of entries, favorites and delete all button
 
-export default function Entries({ total, favorites, setEntries }) {
+export default function Controls({ total, favorites, setEntries }) {
   return (
     <>
       <div className="entries-info-box">

@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 
 export default function Form(props) {
-  const { setNewEntry, isEdit, editEntry } = props;
+  const { setNewEntry, isEdit, editEntry, setIsEdit } = props;
   const [motto, setMotto] = useState("");
   const [notes, setNotes] = useState("");
   const [editObject, setEditObject] = useState("");
@@ -17,6 +17,7 @@ export default function Form(props) {
   // Submit this to local storage
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(setNewEntry);
     if (motto && notes) {
       setNewEntry({
         motto,
@@ -28,12 +29,17 @@ export default function Form(props) {
     setMotto("");
     setNotes("");
   };
-
+  // Sets new data for edited entry
   const handleEdit = (event) => {
     event.preventDefault();
-    editEntry.motto = motto;
-    editEntry.notes = notes;
-    console.log(editEntry);
+    editEntry.motto = motto ? motto : editObject.motto;
+    editEntry.notes = notes ? notes : editObject.notes;
+    setNewEntry({
+      ...editEntry,
+    });
+    setIsEdit((prevState) => !prevState);
+    setMotto("");
+    setNotes("");
   };
 
   return (
