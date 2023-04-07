@@ -1,4 +1,4 @@
-export default function Entries({ children, total, favorites }) {
+export default function Entries({ total, favorites, setEntries }) {
   return (
     <>
       <div className="entries-info-box">
@@ -9,7 +9,16 @@ export default function Entries({ children, total, favorites }) {
           Favorites
           <span className="counter-favorite-entries">{favorites}</span>
         </span>
-        <div className="entries-rendering">{children}</div>
+        <button
+          type="button"
+          onClick={() => {
+            localStorage.clear();
+            localStorage.setItem("entries", "[]");
+            setEntries([]);
+          }}
+        >
+          Delete All
+        </button>
       </div>
     </>
   );
