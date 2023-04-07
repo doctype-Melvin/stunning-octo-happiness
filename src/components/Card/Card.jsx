@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Card({ motto, notes, id, entries }) {
+export default function Card({ motto, notes, id, entries, setEntries }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleFavorite = (object) => {
@@ -13,8 +13,11 @@ export default function Card({ motto, notes, id, entries }) {
 
   const handleClick = (event) => {
     const { id } = event.target;
-    toggleFavorite(entries.find((entry) => entry.id === id));
+    let updateThis = entries.slice();
+    toggleFavorite(updateThis.find((entry) => entry.id === id));
     setIsFavorite((prevState) => !prevState);
+    localStorage.setItem("entries", JSON.stringify(updateThis));
+    setEntries(updateThis);
   };
 
   return (

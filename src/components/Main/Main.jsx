@@ -50,6 +50,7 @@ export default function Main() {
             key={entry.id}
             id={entry.id}
             entries={entries}
+            setEntries={setEntries}
           />
         ))}
       </Rendering>
