@@ -4,10 +4,10 @@ export default function Controls({ total, favorites, setEntries }) {
   return (
     <>
       <div className="entries-info-box">
-        <span>
+        <span onClick={() => console.log("show all entries")}>
           All Entries <span className="counter-all-entries">{total}</span>
         </span>
-        <span>
+        <span onClick={() => console.log("show all favorites")}>
           Favorites
           <span className="counter-favorite-entries">{favorites}</span>
         </span>
