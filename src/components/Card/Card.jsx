@@ -69,8 +69,6 @@ export default function Card({
           >
             Edit
           </button>
-          <section className="motto">{motto}</section>
-          <section className="notes">{notes}</section>
           <button
             type="button"
             className="delete-button"
@@ -79,6 +77,8 @@ export default function Card({
           >
             Delete
           </button>
+          <section className="motto">{motto}</section>
+          <section className="notes">{notes}</section>
         </>
       ) : (
         <Form

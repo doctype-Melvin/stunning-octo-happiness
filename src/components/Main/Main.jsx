@@ -33,10 +33,6 @@ export default function Main() {
   }, [newEntry]);
 
   useEffect(() => {
-    console.log(entries);
-  }, [entries]);
-
-  useEffect(() => {
     // First render: Check if localStorage has item
     const storedEntries = JSON.parse(localStorage.getItem("entries"));
     if (storedEntries) {
@@ -53,6 +49,7 @@ export default function Main() {
       <Form newEntry={newEntry} setNewEntry={setNewEntry} />
       <Controls
         setFilter={setFilter}
+        filter={filter}
         setEntries={setEntries}
         entries={entries}
         total={entries.length}
