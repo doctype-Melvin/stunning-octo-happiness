@@ -6,6 +6,7 @@ import Entries from "./components/Entries/Entries";
 import "./App.css";
 
 export default function App() {
+  console.clear();
   return (
     <div className="App">
       <Header />

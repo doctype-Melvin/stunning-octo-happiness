@@ -1,3 +1,5 @@
+// Component renders number of entries, favorites and delete all button
+
 export default function Entries({ total, favorites, setEntries }) {
   return (
     <>
