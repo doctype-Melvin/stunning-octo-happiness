@@ -12,12 +12,12 @@ export default function Controls({ total, favorites, setEntries, setFilter }) {
   return (
     <>
       <div className="entries-info-box">
-        <span onClick={handleShowAll}>
-          All Entries <span className="counter-all-entries">{total}</span>
+        <span className="all__entries" onClick={handleShowAll}>
+          All Entries <span className="counter__all__entries">{total}</span>
         </span>
-        <span onClick={handleShowFavorites}>
+        <span className="favorite__entries" onClick={handleShowFavorites}>
           Favorites
-          <span className="counter-favorite-entries">{favorites}</span>
+          <span className="counter__favorite__entries">{favorites}</span>
         </span>
         <button
           type="button"
