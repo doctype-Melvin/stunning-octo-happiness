@@ -8,6 +8,7 @@ export default function Form(props) {
   const [motto, setMotto] = useState("");
   const [notes, setNotes] = useState("");
   const [editObject, setEditObject] = useState("");
+
   useEffect(() => {
     if (isEdit) {
       setEditObject(editEntry);
@@ -17,7 +18,6 @@ export default function Form(props) {
   // Submit this to local storage
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(setNewEntry);
     if (motto && notes) {
       setNewEntry({
         motto,
