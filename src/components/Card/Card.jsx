@@ -39,6 +39,15 @@ export default function Card({
     setIsEdit((prevState) => !prevState);
   };
 
+  const handleDelete = (event) => {
+    const { id } = event.target;
+    let updateThis = entries.slice();
+    let deleteThisIndex = updateThis.findIndex((entry) => entry.id === id);
+    updateThis.splice(deleteThisIndex, 1);
+    localStorage.setItem("entries", JSON.stringify(updateThis));
+    setEntries(updateThis);
+  };
+
   return (
     <section className="card">
       {!isEdit ? (
@@ -62,6 +71,14 @@ export default function Card({
           </button>
           <section className="motto">{motto}</section>
           <section className="notes">{notes}</section>
+          <button
+            type="button"
+            className="delete-button"
+            id={id}
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
         </>
       ) : (
         <Form

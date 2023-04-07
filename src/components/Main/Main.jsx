@@ -12,6 +12,7 @@ export default function Main() {
 
   useEffect(() => {
     if (currentData && newEntry) {
+      // If there's a dupe, replace it
       if (currentData.some((entry) => entry.id === newEntry.id)) {
         let duplicateIndex = currentData
           .slice()
@@ -21,6 +22,7 @@ export default function Main() {
         localStorage.setItem("entries", JSON.stringify(currentData));
         setNewEntry("");
       } else {
+        // Happy path: Just add new entry
         let freshEntries = [...currentData, newEntry];
         setEntries(freshEntries);
         localStorage.setItem("entries", JSON.stringify(freshEntries));
@@ -30,14 +32,13 @@ export default function Main() {
   }, [newEntry]);
 
   useEffect(() => {
-    console.log(entries.length);
-  }, [entries]);
-
-  useEffect(() => {
+    // First render: Check if localStorage has item
     const storedEntries = JSON.parse(localStorage.getItem("entries"));
     if (storedEntries) {
+      // Sets entries data from localStorage
       setEntries(storedEntries);
     } else {
+      // Sets new entries array
       localStorage.setItem("entries", "[]");
     }
   }, []);
