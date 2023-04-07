@@ -8,6 +8,7 @@ import Rendering from "../Rendering/Rendering";
 export default function Main() {
   const [newEntry, setNewEntry] = useState("");
   const [entries, setEntries] = useState([]);
+  const [filter, setFilter] = useState(false);
   let currentData = JSON.parse(localStorage.getItem("entries"));
 
   useEffect(() => {
@@ -32,6 +33,10 @@ export default function Main() {
   }, [newEntry]);
 
   useEffect(() => {
+    console.log(entries);
+  }, [entries]);
+
+  useEffect(() => {
     // First render: Check if localStorage has item
     const storedEntries = JSON.parse(localStorage.getItem("entries"));
     if (storedEntries) {
@@ -47,22 +52,38 @@ export default function Main() {
     <div>
       <Form newEntry={newEntry} setNewEntry={setNewEntry} />
       <Controls
+        setFilter={setFilter}
         setEntries={setEntries}
+        entries={entries}
         total={entries.length}
         favorites={entries.filter((entry) => entry.favorite === true).length}
       />
       <Rendering>
-        {entries.map((entry) => (
-          <Card
-            motto={entry.motto}
-            notes={entry.notes}
-            key={entry.id}
-            id={entry.id}
-            entries={entries}
-            setEntries={setEntries}
-            setNewEntry={setNewEntry}
-          />
-        ))}
+        {!filter
+          ? entries.map((entry) => (
+              <Card
+                motto={entry.motto}
+                notes={entry.notes}
+                key={entry.id}
+                id={entry.id}
+                entries={entries}
+                setEntries={setEntries}
+                setNewEntry={setNewEntry}
+              />
+            ))
+          : entries
+              .filter((entry) => !!entry.favorite)
+              .map((entry) => (
+                <Card
+                  motto={entry.motto}
+                  notes={entry.notes}
+                  key={entry.id}
+                  id={entry.id}
+                  entries={entries}
+                  setEntries={setEntries}
+                  setNewEntry={setNewEntry}
+                />
+              ))}
       </Rendering>
     </div>
   );

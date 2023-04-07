@@ -1,13 +1,21 @@
 // Component renders number of entries, favorites and delete all button
 
-export default function Controls({ total, favorites, setEntries }) {
+export default function Controls({ total, favorites, setEntries, setFilter }) {
+  const handleShowFavorites = () => {
+    setFilter(true);
+  };
+
+  const handleShowAll = () => {
+    setFilter(false);
+  };
+
   return (
     <>
       <div className="entries-info-box">
-        <span onClick={() => console.log("show all entries")}>
+        <span onClick={handleShowAll}>
           All Entries <span className="counter-all-entries">{total}</span>
         </span>
-        <span onClick={() => console.log("show all favorites")}>
+        <span onClick={handleShowFavorites}>
           Favorites
           <span className="counter-favorite-entries">{favorites}</span>
         </span>
