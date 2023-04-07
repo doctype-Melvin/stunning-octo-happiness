@@ -1,70 +1,68 @@
 import { useEffect, useState } from "react";
-import Entries from "../Entries/Entries";
+import Controls from "../Controls/Controls";
 import Form from "../Form/Form";
 import Card from "../Card/Card";
+import Rendering from "../Rendering/Rendering";
 
 // localStorage.clear();
 export default function Main() {
   const [newEntry, setNewEntry] = useState("");
-  const [allEntries, setAllEntries] = useState(0);
-  const [favorites, setFavorites] = useState(0);
-  const [entriesArray, setEntriesArray] = useState([]);
+  const [entries, setEntries] = useState([]);
+  let currentData = JSON.parse(localStorage.getItem("entries"));
 
   useEffect(() => {
-    if (localStorage.getItem("journal")) {
-      let dataOnRender = JSON.parse(localStorage.getItem("journal"));
-      setAllEntries(dataOnRender.length);
-      setFavorites(
-        dataOnRender.filter((entry) => entry.favorite === true).length
-      );
-      setEntriesArray(dataOnRender);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!localStorage.getItem("journal")) {
-      localStorage.setItem("journal", JSON.stringify([]));
-    } else if (newEntry) {
-      let currentData = JSON.parse(localStorage.getItem("journal"));
-      let updatedData = [...currentData, newEntry];
-      localStorage.setItem("journal", JSON.stringify(updatedData));
-      setAllEntries(JSON.parse(localStorage.getItem("journal")).length);
-      setFavorites(
-        updatedData.filter((entry) => entry.favorite === true).length
-      );
-      setEntriesArray(updatedData);
+    if (currentData && newEntry) {
+      if (currentData.some((entry) => entry.id === newEntry.id)) {
+        let duplicateIndex = currentData
+          .slice()
+          .findIndex((entry) => entry.id === newEntry.id);
+        currentData.splice(duplicateIndex, 1, newEntry);
+        setEntries(currentData);
+        localStorage.setItem("entries", JSON.stringify(currentData));
+        setNewEntry("");
+      } else {
+        let freshEntries = [...currentData, newEntry];
+        setEntries(freshEntries);
+        localStorage.setItem("entries", JSON.stringify(freshEntries));
+        setNewEntry("");
+      }
     }
   }, [newEntry]);
 
-  // Filter and render favorites
   useEffect(() => {
-    let currentData = JSON.parse(localStorage.getItem("journal"));
-    /*
-    filter the local storage array by favorite properties
-    set the favorites state
-    pass the length to Entries component
-    */
-  });
+    console.log(entries.length);
+  }, [entries]);
+
+  useEffect(() => {
+    const storedEntries = JSON.parse(localStorage.getItem("entries"));
+    if (storedEntries) {
+      setEntries(storedEntries);
+    } else {
+      localStorage.setItem("entries", "[]");
+    }
+  }, []);
 
   return (
     <div>
       <Form newEntry={newEntry} setNewEntry={setNewEntry} />
-      <Entries total={allEntries} favorites={favorites}>
-        <button
-          type="button"
-          onClick={() => {
-            localStorage.clear();
-            localStorage.setItem("journal", JSON.stringify([]));
-            setAllEntries(0);
-            setNewEntry("");
-          }}
-        >
-          Delete All
-        </button>
-        {entriesArray.map((entry) => (
-          <Card motto={entry.motto} notes={entry.notes} key={entry.id} />
+      <Controls
+        setEntries={setEntries}
+        total={entries.length}
+        favorites={entries.filter((entry) => entry.favorite === true).length}
+      />
+      <Rendering>
+        {entries.map((entry) => (
+          <Card
+            motto={entry.motto}
+            notes={entry.notes}
+            key={entry.id}
+            id={entry.id}
+            entries={entries}
+            setEntries={setEntries}
+            setNewEntry={setNewEntry}
+          />
         ))}
-      </Entries>
+      </Rendering>
     </div>
   );
 }
