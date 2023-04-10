@@ -1,0 +1,28 @@
+.entries-info-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.all__entries,
+.favorite__entries {
+  font-weight: 600;
+}
+
+.counter__all__entries,
+.counter__favorite__entries {
+  font-weight: 400;
+  border-radius: 15px;
+  padding: 3px 10px;
+  background-color: var(--color-water-10);
+}
+
+.all__entries--active,
+.favorite__entries--active {
+  color: var(--color-nemo);
+}
+
+.counter__all__entries--active,
+.counter__favorite__entries--active {
+  background-color: var(--color-nemo);
+}

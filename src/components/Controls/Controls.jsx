@@ -27,7 +27,7 @@ export default function Controls({
           All Entries <span className="counter__all__entries">{total}</span>
         </span>
         <span className="favorite__entries" onClick={handleShowFavorites}>
-          Favorites
+          Favorites{" "}
           <span className="counter__favorite__entries">{favorites}</span>
         </span>
 

@@ -47,7 +47,7 @@ export default function Form(props) {
       {!isEdit ? (
         <form onSubmit={handleSubmit}>
           <h2>NEW ENTRY</h2>
-          <label htmlFor="motto">MOTTO</label>
+          <label htmlFor="motto">Motto</label>
           <input
             type="text"
             name="motto"
@@ -55,7 +55,7 @@ export default function Form(props) {
             onChange={(event) => setMotto(event.target.value)}
             value={motto}
           />
-          <label htmlFor="notes">NOTES</label>
+          <label htmlFor="notes">Notes</label>
           <textarea
             name="notes"
             id="notes"
@@ -64,7 +64,9 @@ export default function Form(props) {
             onChange={(event) => setNotes(event.target.value)}
             value={notes}
           ></textarea>
-          <button type="submit">Create</button>
+          <button type="submit" className="create__button">
+            Create
+          </button>
         </form>
       ) : (
         <form onSubmit={handleEdit}>
@@ -82,7 +84,7 @@ export default function Form(props) {
             name="notes"
             id="notes"
             cols="30"
-            rows="3"
+            rows="4"
             onChange={(event) => setNotes(event.target.value)}
             defaultValue={editObject.notes}
           ></textarea>

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
 import Main from "./components/Main/Main";
-import Entries from "./components/Controls/Controls";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 export default function App() {
@@ -11,7 +10,7 @@ export default function App() {
     <div className="App">
       <Header />
       <Main />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
