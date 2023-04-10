@@ -8,7 +8,6 @@ export default function Form(props) {
   const [motto, setMotto] = useState("");
   const [notes, setNotes] = useState("");
   const [editObject, setEditObject] = useState("");
-  // const [date, setDate] = useState(new Date());
 
   useEffect(() => {
     if (isEdit) {

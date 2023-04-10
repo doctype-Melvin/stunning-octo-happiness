@@ -54,14 +54,17 @@ export default function Card({
       {!isEdit ? (
         <>
           <h1 className="date">{date}</h1>
-          <button
-            type="button"
-            className="favorite-button"
-            id={id}
+          <img
+            src={
+              isFavorite
+                ? "../../resources/star-filled.svg"
+                : "../../resources/star.svg"
+            }
+            alt="favorite__button"
             onClick={handleClick}
-          >
-            Favorite
-          </button>
+            id={id}
+            className="favorite-button"
+          />
           <button
             type="button"
             className="edit-button"
