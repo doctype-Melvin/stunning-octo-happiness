@@ -8,6 +8,7 @@ export default function Form(props) {
   const [motto, setMotto] = useState("");
   const [notes, setNotes] = useState("");
   const [editObject, setEditObject] = useState("");
+  // const [date, setDate] = useState(new Date());
 
   useEffect(() => {
     if (isEdit) {
@@ -24,6 +25,13 @@ export default function Form(props) {
         notes,
         id: nanoid(),
         favorite: false,
+        date: new Date()
+          .toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })
+          .toUpperCase(),
       });
     }
     setMotto("");

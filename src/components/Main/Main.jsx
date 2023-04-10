@@ -67,6 +67,7 @@ export default function Main() {
                 notes={entry.notes}
                 key={entry.id}
                 id={entry.id}
+                date={entry.date}
                 entries={entries}
                 setEntries={setEntries}
                 setNewEntry={setNewEntry}
@@ -80,6 +81,7 @@ export default function Main() {
                   notes={entry.notes}
                   key={entry.id}
                   id={entry.id}
+                  date={entry.date}
                   entries={entries}
                   setEntries={setEntries}
                   setNewEntry={setNewEntry}

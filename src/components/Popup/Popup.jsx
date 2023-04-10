@@ -1,4 +1,4 @@
-export default function Popup({ setDeleteAll }) {
+export default function Popup({ setDeleteAll, setEntries }) {
   return (
     <>
       <section className="confirm__popup">
@@ -15,10 +15,9 @@ export default function Popup({ setDeleteAll }) {
           className="confirm__button__popup"
           onClick={() => {
             // Goes into confirmation popup
-            // localStorage.clear();
-            // localStorage.setItem("entries", "[]");
-            // setEntries([]);
-            console.log("Confirm");
+            localStorage.clear();
+            localStorage.setItem("entries", "[]");
+            setEntries([]);
             setDeleteAll((prevState) => !prevState);
           }}
         >

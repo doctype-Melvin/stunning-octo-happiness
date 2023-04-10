@@ -32,7 +32,9 @@ export default function Controls({
         </span>
 
         {/* Delete all should display a confirmation popup */}
-        {deleteAll ? <Popup setDeleteAll={setDeleteAll} /> : undefined}
+        {deleteAll ? (
+          <Popup setDeleteAll={setDeleteAll} setEntries={setEntries} />
+        ) : undefined}
         <button
           type="button"
           className="delete__all__button"

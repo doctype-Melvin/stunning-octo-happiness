@@ -9,6 +9,7 @@ export default function Card({
   entries,
   setEntries,
   setNewEntry,
+  date,
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -52,7 +53,7 @@ export default function Card({
     <section className="card">
       {!isEdit ? (
         <>
-          <h1 className="date">Today</h1>
+          <h1 className="date">{date}</h1>
           <button
             type="button"
             className="favorite-button"
