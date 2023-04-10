@@ -5,6 +5,7 @@
 @import "./components/Main/main.css";
 @import "./components/Popup/popup.css";
 @import "./components/Footer/footer.css";
+@import "./components/Rendering/rendering.css";
 
 :root {
   /* Used for texts (+ footer background) */
