@@ -9,6 +9,8 @@ export default function Main() {
   const [newEntry, setNewEntry] = useState("");
   const [entries, setEntries] = useState([]);
   const [filter, setFilter] = useState(false);
+  const [deleteAll, setDeleteAll] = useState(false);
+
   let currentData = JSON.parse(localStorage.getItem("entries"));
 
   useEffect(() => {
@@ -53,6 +55,8 @@ export default function Main() {
         setEntries={setEntries}
         entries={entries}
         total={entries.length}
+        deleteAll={deleteAll}
+        setDeleteAll={setDeleteAll}
         favorites={entries.filter((entry) => entry.favorite === true).length}
       />
       <Rendering>

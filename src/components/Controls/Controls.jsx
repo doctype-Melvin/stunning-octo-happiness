@@ -1,3 +1,5 @@
+import Popup from "../Popup/Popup";
+
 // Component renders number of entries, favorites and delete all button
 
 export default function Controls({
@@ -6,6 +8,8 @@ export default function Controls({
   setEntries,
   setFilter,
   filter,
+  deleteAll,
+  setDeleteAll,
 }) {
   const handleShowFavorites = () => {
     setFilter(true);
@@ -28,13 +32,12 @@ export default function Controls({
         </span>
 
         {/* Delete all should display a confirmation popup */}
+        {deleteAll ? <Popup setDeleteAll={setDeleteAll} /> : undefined}
         <button
           type="button"
+          className="delete__all__button"
           onClick={() => {
-            // Goes into confirmation popup
-            localStorage.clear();
-            localStorage.setItem("entries", "[]");
-            setEntries([]);
+            setDeleteAll((prevState) => !prevState);
           }}
         >
           Delete All
