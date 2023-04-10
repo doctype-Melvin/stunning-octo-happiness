@@ -34,3 +34,16 @@
   border-radius: 15px;
   padding: 3px 10px;
 }
+
+.delete__all__button {
+  background-color: var(--color-nemo-dark);
+  color: var(--color-foam);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.delete__all__button:hover {
+  background-color: var(--color-nemo);
+  transition: 0.3s;
+}
