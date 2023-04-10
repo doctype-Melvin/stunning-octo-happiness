@@ -23,12 +23,37 @@ export default function Controls({
     <>
       <div className="entries-info-box">
         {/* !filter all__entries is orange : favorite__entries is orange */}
-        <span className="all__entries" onClick={handleShowAll}>
-          All Entries <span className="counter__all__entries">{total}</span>
+        <span
+          className={!filter ? "all__entries--active" : "all__entries"}
+          onClick={handleShowAll}
+        >
+          All Entries{" "}
+          <span
+            className={
+              !filter
+                ? "counter__all__entries--active"
+                : "counter__all__entries"
+            }
+          >
+            {total}
+          </span>
         </span>
-        <span className="favorite__entries" onClick={handleShowFavorites}>
+        <span
+          className={
+            !filter ? "favorite__entries" : "favorite__entries--active"
+          }
+          onClick={handleShowFavorites}
+        >
           Favorites{" "}
-          <span className="counter__favorite__entries">{favorites}</span>
+          <span
+            className={
+              !filter
+                ? "counter__favorite__entries"
+                : "counter__favorite__entries--active"
+            }
+          >
+            {favorites}
+          </span>
         </span>
 
         {/* Delete all should display a confirmation popup */}

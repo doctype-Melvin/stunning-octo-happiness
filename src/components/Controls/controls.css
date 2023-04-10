@@ -4,6 +4,10 @@
   justify-content: space-evenly;
 }
 
+.entries-info-box > *:hover {
+  cursor: pointer;
+}
+
 .all__entries,
 .favorite__entries {
   font-weight: 600;
@@ -20,9 +24,13 @@
 .all__entries--active,
 .favorite__entries--active {
   color: var(--color-nemo);
+  font-weight: 600;
 }
 
 .counter__all__entries--active,
 .counter__favorite__entries--active {
+  color: var(--color-foam);
   background-color: var(--color-nemo);
+  border-radius: 15px;
+  padding: 3px 10px;
 }

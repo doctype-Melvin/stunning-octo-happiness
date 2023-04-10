@@ -54,6 +54,7 @@ export default function Card({
       {!isEdit ? (
         <>
           <h1 className="date">{date}</h1>
+          {/* More flexible option: render SVGs from component */}
           <img
             src={
               isFavorite
