@@ -3,13 +3,12 @@ import Popup from "../Popup/Popup";
 // Component renders number of entries, favorites and delete all button
 
 export default function Controls({
-  total,
-  favorites,
   setEntries,
   setFilter,
   filter,
   deleteAll,
   setDeleteAll,
+  entries,
 }) {
   const handleShowFavorites = () => {
     setFilter(true);
@@ -35,7 +34,7 @@ export default function Controls({
                 : "counter__all__entries"
             }
           >
-            {total}
+            {entries.length}
           </span>
         </span>
         <span
@@ -52,7 +51,7 @@ export default function Controls({
                 : "counter__favorite__entries--active"
             }
           >
-            {favorites}
+            {entries.filter((entry) => entry.favorite === true).length}
           </span>
         </span>
 

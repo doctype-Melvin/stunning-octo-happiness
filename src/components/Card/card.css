@@ -2,7 +2,7 @@
   min-height: 150px;
   border-bottom: solid 1px var(--color-water-10);
   margin-bottom: 25px;
-  max-width: 300px;
+  min-width: 330px;
 }
 
 .card__header,
@@ -24,7 +24,7 @@
 
 .motto {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .favorite-button,

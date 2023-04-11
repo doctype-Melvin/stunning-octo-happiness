@@ -54,10 +54,8 @@ export default function Main() {
         filter={filter}
         setEntries={setEntries}
         entries={entries}
-        total={entries.length}
         deleteAll={deleteAll}
         setDeleteAll={setDeleteAll}
-        favorites={entries.filter((entry) => entry.favorite === true).length}
       />
       <Rendering>
         {!filter
