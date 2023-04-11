@@ -15,18 +15,13 @@ export default function Card({
   const [isEdit, setIsEdit] = useState(false);
   const [editEntry, setEditEntry] = useState("");
 
-  const toggleFavorite = (object) => {
-    if (object.favorite) {
-      object.favorite = false;
-    } else {
-      object.favorite = true;
-    }
-  };
-
   const handleClick = (event) => {
     const { id } = event.target;
-    let updateThis = entries.slice();
-    toggleFavorite(updateThis.find((entry) => entry.id === id));
+
+    // toggleFavorite(updateThis.find((entry) => entry.id === id));
+    let updateThis = entries.map((entry) =>
+      entry.id === id ? { ...entry, favorite: !entry.favorite } : entry
+    );
     setIsFavorite((prevState) => !prevState);
     localStorage.setItem("entries", JSON.stringify(updateThis));
     setEntries(updateThis);
@@ -42,9 +37,7 @@ export default function Card({
 
   const handleDelete = (event) => {
     const { id } = event.target;
-    let updateThis = entries.slice();
-    let deleteThisIndex = updateThis.findIndex((entry) => entry.id === id);
-    updateThis.splice(deleteThisIndex, 1);
+    let updateThis = entries.slice().filter((entry) => entry.id !== id);
     localStorage.setItem("entries", JSON.stringify(updateThis));
     setEntries(updateThis);
   };

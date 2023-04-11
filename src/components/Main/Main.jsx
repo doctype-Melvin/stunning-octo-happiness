@@ -12,15 +12,13 @@ export default function Main() {
   const [deleteAll, setDeleteAll] = useState(false);
 
   let currentData = JSON.parse(localStorage.getItem("entries"));
-
   useEffect(() => {
     if (currentData && newEntry) {
       // If there's a dupe, replace it
       if (currentData.some((entry) => entry.id === newEntry.id)) {
-        let duplicateIndex = currentData
-          .slice()
-          .findIndex((entry) => entry.id === newEntry.id);
-        currentData.splice(duplicateIndex, 1, newEntry);
+        currentData = currentData.map((entry) =>
+          entry.id === newEntry.id ? newEntry : entry
+        );
         setEntries(currentData);
         localStorage.setItem("entries", JSON.stringify(currentData));
         setNewEntry("");
