@@ -9,6 +9,7 @@ export default function Card({
   entries,
   setEntries,
   setNewEntry,
+  date,
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -52,33 +53,45 @@ export default function Card({
     <section className="card">
       {!isEdit ? (
         <>
-          <h1 className="date">Today</h1>
-          <button
-            type="button"
-            className="favorite-button"
-            id={id}
-            onClick={handleClick}
-          >
-            Favorite
-          </button>
-          <button
-            type="button"
-            className="edit-button"
-            id={id}
-            onClick={handleEdit}
-          >
-            Edit
-          </button>
-          <section className="motto">{motto}</section>
+          <h3 className="date">{date}</h3>
+          <div className="card__header">
+            <section className="motto">
+              {'"'}
+              {motto}
+              {'"'}
+            </section>
+            <section className="card__buttons">
+              {/* More flexible option: render SVGs from component */}
+              <img
+                src={
+                  isFavorite
+                    ? "../../resources/star-filled.svg"
+                    : "../../resources/star.svg"
+                }
+                alt="favorite__button"
+                onClick={handleClick}
+                id={id}
+                className="favorite-button"
+              />
+              <button
+                type="button"
+                className="edit-button"
+                id={id}
+                onClick={handleEdit}
+              >
+                📝
+              </button>
+              <button
+                type="button"
+                className="delete-button"
+                id={id}
+                onClick={handleDelete}
+              >
+                ❌
+              </button>
+            </section>
+          </div>
           <section className="notes">{notes}</section>
-          <button
-            type="button"
-            className="delete-button"
-            id={id}
-            onClick={handleDelete}
-          >
-            Delete
-          </button>
         </>
       ) : (
         <Form

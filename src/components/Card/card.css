@@ -1,0 +1,44 @@
+.card {
+  min-height: 150px;
+  border-bottom: solid 1px var(--color-water-10);
+  margin-bottom: 25px;
+  min-width: 330px;
+}
+
+.card__header,
+.card__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__header {
+  margin-bottom: 15px;
+}
+
+.date {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.motto {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.favorite-button,
+.edit-button {
+  margin-right: 10px;
+}
+
+.edit-button,
+.delete-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.card__buttons > *:hover {
+  cursor: pointer;
+}

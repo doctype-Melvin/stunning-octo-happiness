@@ -8,6 +8,9 @@ import Rendering from "../Rendering/Rendering";
 export default function Main() {
   const [newEntry, setNewEntry] = useState("");
   const [entries, setEntries] = useState([]);
+  const [filter, setFilter] = useState(false);
+  const [deleteAll, setDeleteAll] = useState(false);
+
   let currentData = JSON.parse(localStorage.getItem("entries"));
 
   useEffect(() => {
@@ -47,22 +50,41 @@ export default function Main() {
     <div>
       <Form newEntry={newEntry} setNewEntry={setNewEntry} />
       <Controls
+        setFilter={setFilter}
+        filter={filter}
         setEntries={setEntries}
-        total={entries.length}
-        favorites={entries.filter((entry) => entry.favorite === true).length}
+        entries={entries}
+        deleteAll={deleteAll}
+        setDeleteAll={setDeleteAll}
       />
       <Rendering>
-        {entries.map((entry) => (
-          <Card
-            motto={entry.motto}
-            notes={entry.notes}
-            key={entry.id}
-            id={entry.id}
-            entries={entries}
-            setEntries={setEntries}
-            setNewEntry={setNewEntry}
-          />
-        ))}
+        {!filter
+          ? entries.map((entry) => (
+              <Card
+                motto={entry.motto}
+                notes={entry.notes}
+                key={entry.id}
+                id={entry.id}
+                date={entry.date}
+                entries={entries}
+                setEntries={setEntries}
+                setNewEntry={setNewEntry}
+              />
+            ))
+          : entries
+              .filter((entry) => !!entry.favorite)
+              .map((entry) => (
+                <Card
+                  motto={entry.motto}
+                  notes={entry.notes}
+                  key={entry.id}
+                  id={entry.id}
+                  date={entry.date}
+                  entries={entries}
+                  setEntries={setEntries}
+                  setNewEntry={setNewEntry}
+                />
+              ))}
       </Rendering>
     </div>
   );

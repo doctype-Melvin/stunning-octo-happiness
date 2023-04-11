@@ -1,0 +1,50 @@
+.entries-info-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.entries-info-box > *:hover {
+  cursor: pointer;
+}
+
+.all__entries,
+.favorite__entries {
+  font-weight: 600;
+}
+
+.counter__all__entries,
+.counter__favorite__entries {
+  font-weight: 400;
+  border-radius: 15px;
+  padding: 3px 10px;
+  background-color: var(--color-water-10);
+}
+
+.all__entries--active,
+.favorite__entries--active {
+  color: var(--color-nemo);
+  font-weight: 600;
+}
+
+.counter__all__entries--active,
+.counter__favorite__entries--active {
+  color: var(--color-foam);
+  background-color: var(--color-nemo);
+  border-radius: 15px;
+  padding: 3px 10px;
+}
+
+.delete__all__button {
+  background-color: var(--color-nemo-dark);
+  color: var(--color-foam);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.delete__all__button:hover {
+  background-color: var(--color-nemo);
+  transition: 0.3s;
+}
