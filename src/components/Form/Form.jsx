@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Form(props) {
   const { setNewEntry, isEdit, editEntry, setIsEdit } = props;
-  const [motto, setMotto] = useState("");
-  const [notes, setNotes] = useState("");
+  const [formInput, setFormInput] = useState({ motto: "", notes: "" });
   const [editObject, setEditObject] = useState("");
 
   useEffect(() => {
@@ -18,35 +17,33 @@ export default function Form(props) {
   // Submit this to local storage
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (motto && notes) {
-      setNewEntry({
-        motto,
-        notes,
-        id: nanoid(),
-        favorite: false,
-        date: new Date()
-          .toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })
-          .toUpperCase(),
-      });
-    }
-    setMotto("");
-    setNotes("");
+    const formData = new FormData(event.target);
+    setFormInput(Object.fromEntries(formData));
+
+    setNewEntry({
+      ...formInput,
+      id: nanoid(),
+      favorite: false,
+      date: new Date()
+        .toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })
+        .toUpperCase(),
+    });
   };
   // Sets new data for edited entry
   const handleEdit = (event) => {
     event.preventDefault();
-    editEntry.motto = motto ? motto : editObject.motto;
-    editEntry.notes = notes ? notes : editObject.notes;
+    editEntry.motto = formInput.motto ? formInput.motto : editObject.motto;
+    editEntry.notes = formInput.notes ? formInput.notes : editObject.notes;
     setNewEntry({
       ...editEntry,
     });
     setIsEdit((prevState) => !prevState);
-    setMotto("");
-    setNotes("");
+
+    event.target.reset();
   };
 
   return (
@@ -59,8 +56,11 @@ export default function Form(props) {
             type="text"
             name="motto"
             id="motto"
-            onChange={(event) => setMotto(event.target.value)}
-            value={motto}
+            onChange={(event) =>
+              setFormInput({ ...formInput, motto: event.target.value })
+            }
+            value={formInput.motto}
+            required
           />
           <label htmlFor="notes">Notes</label>
           <textarea
@@ -68,8 +68,11 @@ export default function Form(props) {
             id="notes"
             cols="30"
             rows="3"
-            onChange={(event) => setNotes(event.target.value)}
-            value={notes}
+            onChange={(event) =>
+              setFormInput({ ...formInput, notes: event.target.value })
+            }
+            value={formInput.notes}
+            required
           ></textarea>
           <button type="submit" className="create__button">
             Create
@@ -83,7 +86,9 @@ export default function Form(props) {
             type="text"
             name="motto"
             id="motto"
-            onChange={(event) => setMotto(event.target.value)}
+            onChange={(event) =>
+              setFormInput({ ...formInput, motto: event.target.value })
+            }
             defaultValue={editObject.motto}
           ></input>
           <label htmlFor="notes">NOTES</label>
@@ -92,10 +97,14 @@ export default function Form(props) {
             id="notes"
             cols="30"
             rows="4"
-            onChange={(event) => setNotes(event.target.value)}
+            onChange={(event) =>
+              setFormInput({ ...formInput, notes: event.target.value })
+            }
             defaultValue={editObject.notes}
           ></textarea>
-          <button type="submit">Save</button>
+          <button type="submit" className="save__edit__button">
+            Save
+          </button>
         </form>
       )}
     </>
