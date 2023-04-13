@@ -56,11 +56,7 @@ export default function Card({
             <section className="card__buttons">
               {/* More flexible option: render SVGs from component */}
               <img
-                src={
-                  isFavorite
-                    ? "../../resources/star-filled.svg"
-                    : "../../resources/star.svg"
-                }
+                src={isFavorite ? "/star-filled.svg" : "/star.svg"}
                 alt="favorite__button"
                 onClick={handleClick}
                 id={id}
