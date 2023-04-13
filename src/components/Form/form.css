@@ -28,14 +28,21 @@ textarea {
   resize: none;
 }
 
-.create__button {
+.create__button,
+.save__edit__button {
   display: block;
   background-color: var(--color-nemo);
   color: var(--color-foam);
   border: none;
   border-radius: 3px;
-  padding: 10px 25px;
-  font-size: 1rem;
-  font-weight: 600;
   margin: 0 auto;
+  font-size: 1rem;
+}
+.create__button {
+  font-weight: 600;
+  padding: 10px 25px;
+}
+
+.save__edit__button {
+  padding: 5px 15px;
 }
