@@ -32,14 +32,16 @@ export default function Form(props) {
         })
         .toUpperCase(),
     });
+    event.target.reset();
   };
   // Sets new data for edited entry
   const handleEdit = (event) => {
     event.preventDefault();
-    editEntry.motto = formInput.motto ? formInput.motto : editObject.motto;
-    editEntry.notes = formInput.notes ? formInput.notes : editObject.notes;
+
     setNewEntry({
-      ...editEntry,
+      ...editObject,
+      motto: formInput.motto || editObject.motto,
+      notes: formInput.notes || editObject.notes,
     });
     setIsEdit((prevState) => !prevState);
 
@@ -59,7 +61,7 @@ export default function Form(props) {
             onChange={(event) =>
               setFormInput({ ...formInput, motto: event.target.value })
             }
-            value={formInput.motto}
+            autoComplete="off"
             required
           />
           <label htmlFor="notes">Notes</label>
@@ -71,7 +73,6 @@ export default function Form(props) {
             onChange={(event) =>
               setFormInput({ ...formInput, notes: event.target.value })
             }
-            value={formInput.notes}
             required
           ></textarea>
           <button type="submit" className="create__button">
@@ -89,6 +90,7 @@ export default function Form(props) {
             onChange={(event) =>
               setFormInput({ ...formInput, motto: event.target.value })
             }
+            autoComplete="off"
             defaultValue={editObject.motto}
           ></input>
           <label htmlFor="notes">NOTES</label>
